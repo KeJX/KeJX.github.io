@@ -284,6 +284,194 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/18/基于webpack的pc电商首页项目总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KeJX">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KeJX Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/18/基于webpack的pc电商首页项目总结/" itemprop="url">基于webpack的pc电商首页项目总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-18T15:05:01+08:00">
+                2019-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="项目演示"><a href="#项目演示" class="headerlink" title="项目演示"></a>项目演示</h2><p><img src="https://s2.ax1x.com/2019/08/18/mK0swF.gif" alt="mK0swF.gif"></p>
+<blockquote>
+<p>已经开源在 <a href="https://github.com/KeJX/taotao" target="_blank" rel="noopener">我的github</a></p>
+</blockquote>
+<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><p>写这个栏目的目的主要是方便以后自己回头回顾和深入学习一下每一块东西…</p>
+<h3 id="webpack相关"><a href="#webpack相关" class="headerlink" title="webpack相关"></a>webpack相关</h3><h4 id="一-引入iconfont文件"><a href="#一-引入iconfont文件" class="headerlink" title="一.引入iconfont文件"></a>一.引入iconfont文件</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">font-face</span> &#123;</span><br><span class="line">   <span class="comment">/*原来的iconfont.css文件*/</span></span><br><span class="line">   <span class="attribute">font-family</span>: <span class="string">"iconfont"</span>;  </span><br><span class="line">   <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">"font/iconfont.eot?t=1565168052702"</span>); <span class="comment">/* IE9 */</span></span><br><span class="line">   <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">"font/iconfont.eot?t=1565168052702#iefix"</span>) <span class="built_in">format</span>(<span class="string">'embedded-opentype'</span>), <span class="comment">/* IE6-IE8 */</span></span><br><span class="line">   <span class="built_in">url</span>(<span class="string">"font/iconfont.woff?t=1565168052702"</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>),</span><br><span class="line">   <span class="built_in">url</span>(<span class="string">"font/iconfont.ttf?t=1565168052702"</span>) <span class="built_in">format</span>(<span class="string">'truetype'</span>), <span class="comment">/* chrome, firefox, opera, Safari, Android, iOS 4.2+ */</span></span><br><span class="line">   <span class="built_in">url</span>(<span class="string">"font/iconfont.svg?t=1565168052702#iconfont"</span>) <span class="built_in">format</span>(<span class="string">'svg'</span>); <span class="comment">/* iOS 4.1- */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">font-face</span> &#123;</span><br><span class="line">    <span class="comment">/*引入在webpack项目中的iconfont需要改动的部分:</span></span><br><span class="line"><span class="comment">    1.有个woff2的部分由于webpack出现了错误我干脆就直接移除了</span></span><br><span class="line"><span class="comment">    2.url中的引号需要去掉,并且将路径改成项目中的相对路径</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">"iconfont"</span>;</span><br><span class="line">  	<span class="attribute">src</span>: <span class="built_in">url</span>(../font/iconfont.eot?t=1566020851286); <span class="comment">/* IE9 */</span></span><br><span class="line">  	<span class="attribute">src</span>: <span class="built_in">url</span>(../font/iconfont.eot?t=1566020851286#iefix) <span class="built_in">format</span>(<span class="string">'embedded-opentype'</span>), <span class="comment">/* IE6-IE8 */</span></span><br><span class="line">  	<span class="built_in">url</span>(../font/iconfont.woff?t=1566020851286) <span class="built_in">format</span>(<span class="string">'woff'</span>),</span><br><span class="line">  	<span class="built_in">url</span>(../font/iconfont.ttf?t=1566020851286) <span class="built_in">format</span>(<span class="string">'truetype'</span>), <span class="comment">/* chrome, firefox, opera, Safari, Android, iOS 4.2+ */</span></span><br><span class="line">  	<span class="built_in">url</span>(../font/iconfont.svg?t=1566020851286#iconfont) <span class="built_in">format</span>(<span class="string">'svg'</span>); <span class="comment">/* iOS 4.1- */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="二-创建static文件夹"><a href="#二-创建static文件夹" class="headerlink" title="二.创建static文件夹"></a>二.创建static文件夹</h4><p>​    在项目过程中由于要用到读取本地的json文件,但是由于webpack打包之后路径会更改的原因会导致路径的书写变得异常困难,于是便想到和vue-cli一样创建一个不会被处理的static文件夹，并且在配置中设置一下别名，方便自己的引用。</p>
+<p><a href="https://blog.csdn.net/hfhwfw161226/article/details/96287063" target="_blank" rel="noopener">内容来源</a></p>
+<h5 id="1-安装插件"><a href="#1-安装插件" class="headerlink" title="1.安装插件"></a>1.安装插件</h5><p><code>cnpm install --save-dev copy-webpack-plugin</code></p>
+<p>建议原来一直使用cnpm就用cnpm,用npm就用npm,否则好像会造成错误</p>
+<h5 id="2-在项目下新建一个文件夹用于存储不想被编译的文件夹"><a href="#2-在项目下新建一个文件夹用于存储不想被编译的文件夹" class="headerlink" title="2.在项目下新建一个文件夹用于存储不想被编译的文件夹"></a>2.在项目下新建一个文件夹用于存储不想被编译的文件夹</h5><h5 id="3-修改webpack配置文件"><a href="#3-修改webpack配置文件" class="headerlink" title="3.修改webpack配置文件"></a>3.修改webpack配置文件</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="comment">// 在头部引入插件</span></span><br><span class="line"><span class="keyword">const</span> CopyWebpackPlugin = <span class="built_in">require</span>(<span class="string">'copy-webpack-plugin'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在plugins配置数组中添加一项</span></span><br><span class="line">plugins: [</span><br><span class="line">    <span class="keyword">new</span> CopyWebpackPlugin([</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">from</span>: path.resolve(__dirname, <span class="string">'./static'</span>),<span class="comment">//__dirname 相对于配置文件存在目录的母文件夹,例如我是pathname/webpack.config.js的话,__dirname:pathname</span></span><br><span class="line">                to: <span class="string">'static'</span>,<span class="comment">//打包后的文件夹输出名称</span></span><br><span class="line">                ignore: [<span class="string">'.*'</span>]<span class="comment">// 忽略打包文件的后缀名,此处都忽略</span></span><br><span class="line">            &#125;</span><br><span class="line">     ])</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-注意事项"><a href="#5-注意事项" class="headerlink" title="5. 注意事项"></a>5. 注意事项</h5><p>static目录下的文件不可通过require或者import的方式引入文件，否则该文件就会参与打包。可以通过http请求静态资源的方式</p>
+<h4 id="三-设置别名"><a href="#三-设置别名" class="headerlink" title="三.设置别名"></a>三.设置别名</h4><p>设置别名更方便我们对地址的引用(不用去思考对引用文件的相对位置了)</p>
+<p><a href="https://www.cnblogs.com/Jimc/p/10282969.html" target="_blank" rel="noopener">内容来源</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> resolve = <span class="function"><span class="params">dir</span> =&gt;</span> path.resolve(__dirname, dir);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: <span class="string">'./src/main.js'</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">        path: resolve(<span class="string">'dist'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    resolve: &#123;</span><br><span class="line">        <span class="comment">// 设置别名</span></span><br><span class="line">        alias: &#123;</span><br><span class="line">            <span class="string">'@'</span>: resolve(<span class="string">'src'</span>)<span class="comment">// 这样配置后 @ 可以指向 src 目录 注意文件与上文__dirname的相对路径关系</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">program (相当于__dirname) </span><br><span class="line">├── asrc</span><br><span class="line">│   └── -static   // &apos;static&apos;: resolve(&apos;src/static&apos;)</span><br><span class="line">├── webpack.config.js</span><br></pre></td></tr></table></figure>
+
+<p>设置完成之后就能在js文件中直接使用绝对的地址了  <code>import &quot;static/your filename&quot;</code></p>
+<h3 id="一些技巧"><a href="#一些技巧" class="headerlink" title="一些技巧"></a>一些技巧</h3><h5 id="1-隐藏文字-seo优化"><a href="#1-隐藏文字-seo优化" class="headerlink" title="1.隐藏文字,seo优化"></a>1.隐藏文字,seo优化</h5><p>由于搜索引擎会根据你的标签抓取内容,所以用到一些语义化的标签会更方便搜索引擎的抓取,但是可能我们需要用语义化例如<code>&lt;h1&gt;</code>的标签,但是不希望它在页面中出现,取而代之是一个logo图片,我们就可以把这个文字隐藏起来</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"./index.html"</span> <span class="attr">class</span>=<span class="string">"logo fl text-hidden"</span>&gt;</span>淘淘网<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/* 文字隐藏*/</span><br><span class="line">.text-hidden&#123;</span><br><span class="line">    text-indent: -9999px;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-行内元素出现小间距的问题"><a href="#2-行内元素出现小间距的问题" class="headerlink" title="2. 行内元素出现小间距的问题"></a>2. 行内元素出现小间距的问题</h5><p>间隔的行内元素之间经常会出现之间会有间距的情况。</p>
+<p>​    原因：由于html文件中标签之中经常会有空格或者回车的情况下，浏览器会将其也解析成需要空间的字符。</p>
+<p>​    解决方法：</p>
+<ol>
+<li><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//不留间隙</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span>&gt;</span>摸摸大<span class="tag">&lt;/<span class="name">a</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;<span class="name">a</span>&gt;</span>你好<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用浮动</p>
+</li>
+<li><p>包裹的父元素中的font-size设置为负值,里面的元素设置为0</p>
+</li>
+</ol>
+<h5 id="3-页面启动的优化手段"><a href="#3-页面启动的优化手段" class="headerlink" title="3. 页面启动的优化手段"></a>3. 页面启动的优化手段</h5><ol>
+<li>按需加载(当其需要显示的时候再加载其中的数据)</li>
+<li>缓存数据到本地(注意数据有效时间)</li>
+<li>cdn</li>
+<li>ssr(没用到,提前放个坑位以后学习)</li>
+</ol>
+<p>​    </p>
+<p>​    </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/16/webpack4基本入门/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -377,7 +565,7 @@
       
         
           
-            <h1 id="webpack4-基础入门"><a href="#webpack4-基础入门" class="headerlink" title="webpack4 基础入门"></a>webpack4 基础入门</h1><blockquote>
+            <blockquote>
 <p>本文只是我在学习过程中做的笔记而不是精心整理的博客文章…文笔比较差,供大家参考</p>
 </blockquote>
 <p><a href="https://www.webpackjs.com/guides/" target="_blank" rel="noopener">官网指南:建议跟学</a><br><a href="https://malun666.github.io/aicoder_vip_doc/#/pages/vip_2webpack?id=webpack-%e5%85%a5%e9%97%a8%e6%95%99%e7%a8%8b" target="_blank" rel="noopener">教程:常用</a></p>
@@ -586,279 +774,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/15/我的第一篇博客/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KeJX">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeJX Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/15/我的第一篇博客/" itemprop="url">我的第一篇博客</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-15T12:49:09+08:00">
-                2019-07-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web前端/" itemprop="url" rel="index">
-                    <span itemprop="name">web前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h1>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/15/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KeJX">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KeJX Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/15/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-15T09:52:31+08:00">
-                2019-07-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -905,7 +820,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
